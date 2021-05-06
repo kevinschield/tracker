@@ -1,0 +1,126 @@
+{% extends "capstone/layout.html" %}
+
+{% load static %}
+{% block header %}
+  <link href="{% static 'capstone/styletracker.css' %}" rel="stylesheet">
+
+  {% if theme == "Blue" %}
+  <style>body{
+    background-color: #596DFF;
+  }</style>
+  {% else %}
+  <style>body{
+    background-color: {{ theme }};
+  }</style>
+  {% endif %}
+{% endblock %}
+{% block body %}
+<div class="container">
+  <div class="row">
+      <div id="victory">
+        <h1>CONGRATULATIONS!</h1>
+        <form action="{% url 'scoreboard' %}" method="POST">
+          {% csrf_token %}
+        <div class="input-group mb-3">
+          <input id="victoryID" name="project_id" value={{ project_id }} type="hidden" style="display:none;">
+            </input>
+            <input id="viccheck" name="viccheck" value={{ victory }} type="hidden" style="display:none;">
+              </input>
+          {% if user == owner %}
+            <button id="victorybutton" class="btn btn-primary">Post It!</button>
+          {% endif %}
+        </div>
+        </form>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-4">
+      <h1>{{ projname }}</h1>
+      <input id="projectID" value={{ project_id }} type="hidden" style="display:none;">
+        </input>
+        <h3>for {{ person }}</h3>
+      </div>
+    <div class="col-8">
+
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-4">
+      <h5 id="stats">{{ completed }} out of {{ units }} {{ unitlabel }} completed</h5>
+            <input type="hidden" readonly class="form-control-plaintext" id="unitnum" value={{ units }}>
+            {% if user == owner %}
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="update">Enter new {{ unitlabel }}</span>
+              </div>
+              <input id="updatenum" type="number" class="form-control" aria-label="Default" aria-describedby="update">
+              {% csrf_token %}
+            </div>
+            <div class="input-group mb-3">
+            <button id="updatebutton" class="btn btn-primary">Update Progress</button>
+            </div>
+            {% endif %}
+          </div>
+      <div class="col-4">
+        <svg id="gameboard" height="200" width="3000" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+        </svg>
+        <svg id="smallboard" height="1000" width="3000" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+        </svg>
+      </div>
+      <div class="col-4>">
+
+        </div>
+    </div>
+
+    <div class="row" id="updaterow">
+      </div>
+    <div class="row" id="completerow">
+          <input type="hidden" readonly class="form-control-plaintext" id="completednum" value={{ completed }}>
+    </div>
+  <div class="row">
+    <div class="col-8">
+      <h3>Messages</h3>
+          <table class="table">
+          <tbody id="msgtable">
+            {% if messages == "No messages" %}
+              <tr>
+                <td id="norow">No messages</td>
+              </tr>
+            {% else %}
+            {% for message in messages %}
+          <tr>
+          <th scope="row">{{ message.message }}</th>
+          <td>{{ message.sender }}</td>
+          <td>{{ message.time }}</td>
+          </tr>
+          {% endfor %}
+          {% endif %}
+          </tbody>
+          </table>
+          <div class="input-group mb-3">
+          <input type="text" class="form-control" id="msg" placeholder="New Message">
+          </div>
+          <div class="input-group mb-3">
+          <button id="msgbutton" class="btn btn-primary">Post Message</button>
+          </div>
+    </div>
+    </div>
+
+
+
+
+<div class="row">
+
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="{% static 'capstone/tracker.js' %}"></script>
+{% endblock %}

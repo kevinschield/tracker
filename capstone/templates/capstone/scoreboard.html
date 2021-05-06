@@ -1,0 +1,35 @@
+{% extends "capstone/layout.html" %}
+
+{% load static %}
+{% block header %}
+  <link href="{% static 'capstone/stylescoreboard.css' %}" rel="stylesheet">
+
+{% endblock %}
+{% block body %}
+<div class="container">
+  <div class="row">
+    <h1>The Victory Board</h1>
+  </div>
+    {% for project in projects %}
+    <div class="row mb-2 victory">
+      {% csrf_token %}
+      <button id="likesbtn" type="button" class="btn btn-info like" value={{ project.id }}>
+        Likes <span id={{ project.id }} class="badge badge-light">0</span>
+      </button>
+    <h3 class="victext">{{ project.units }} {{ project.unitlabel }} by {{ project.person}}</h3>
+    <input id="projectID" value={{ project.id }} type="hidden" style="display:none;">
+      </input>
+
+
+      </div>
+      {% endfor %}
+</div>
+
+{% endblock %}
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script src="{% static 'capstone/scoreboard.js' %}"></script>
+{% endblock %}

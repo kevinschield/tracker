@@ -1,0 +1,45 @@
+body {
+background-color: #11111C;
+color: white;
+}
+
+
+
+@keyframes deleteproj {
+  from {
+    opacity: 1;
+    height: 100%;
+    line-height: 100%;
+  }
+  to {
+    opacity: 0;
+    height: 0%;
+    line-height: 0%;
+  }
+}
+
+.card-body {
+  animation-name: deleteproj;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+@keyframes deletecard {
+  from {
+    opacity: 1;
+;
+  }
+  to {
+    opacity: 0;
+;
+  }
+}
+
+.card {
+  color: black;
+  animation-name: deletecard;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}

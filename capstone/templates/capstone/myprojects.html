@@ -1,0 +1,44 @@
+{% extends "capstone/layout.html" %}
+
+{% load static %}
+{% block header %}
+  <link href="{% static 'capstone/stylemyprojects.css' %}" rel="stylesheet">
+
+{% endblock %}
+{% block body %}
+<div class="container">
+  <div class="row">
+{%  if user.is_authenticated %}
+<h1>{{ user.username }}'s Projects</h1>
+{% endif %}
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2>Select a Project</h2>
+      {% for project in projects %}
+      <div class="card mb-2" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-header">{{ project.projname }}</h5>
+          <p class="card-text">Tracking the number of {{ project.unitlabel }} for {{ project.person }}.</p>
+          <a href="{% url 'projectpage' project.id %}" class="btn btn-primary mb-2">Open Project</a>
+
+          <form action="{% url 'edit' %}" method="POST">
+            {% csrf_token %}
+          <button id="edit" name="project_id" type="submit" class="btn btn-primary btn-sm mb-2" value={{ project.id }}>Edit Project</button>
+          </form>
+          <button id="delete" type="button" class="btn btn-primary btn-sm" value={{ project.id }}>Delete Project</button>
+        </div>
+      </div>
+      {% endfor %}
+      </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script src="{% static 'capstone/myprojects.js' %}"></script>
+{% endblock %}

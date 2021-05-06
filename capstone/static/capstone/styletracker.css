@@ -1,0 +1,33 @@
+
+#victory {
+  visibility: hidden;
+}
+
+#viccheck{
+  display: none;
+}
+
+#boe {
+  text-align: center;
+}
+
+#boelist {
+  background-color: white;
+  border-style: solid;
+  border-radius: 1px;
+}
+
+
+@keyframes move {
+    from {
+        left: 0%;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+#avatar {
+
+  z-index: 1;
+}

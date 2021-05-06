@@ -1,0 +1,25 @@
+body {
+background-color: #11111C;
+color: white;
+}
+
+.card {
+  color: black;
+}
+
+.victory {
+  margin: auto;
+  border: 2px solid white;
+  padding: 10px;
+}
+
+.like {
+  padding: 10px;
+  position: relative;
+  left: 25px;
+}
+
+.victext {
+  position: relative;
+  left: 30px;
+}

@@ -1,0 +1,36 @@
+.victory {
+  margin: auto;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.like {
+  padding: 10px;
+  position: relative;
+  left: 25px;
+}
+
+.victext {
+  position: relative;
+  left: 30px;
+}
+
+@keyframes deleteproj {
+  from {
+    opacity: 1;
+    height: 100%;
+    line-height: 100%;
+  }
+  to {
+    opacity: 0;
+    height: 0%;
+    line-height: 0%;
+  }
+
+
+.card-body {
+  animation-name: deleteproj;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
