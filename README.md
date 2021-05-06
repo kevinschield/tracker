@@ -1,3 +1,7 @@
+Getting started:
+You will need to have Python and Django installed.
+https://docs.djangoproject.com/en/3.2/topics/install/
+
 Welcome to the Family Project tracker
 This web application is designed to help families track whatever activity they
 like to do. For example, maybe a child is learning to read and the family wants
